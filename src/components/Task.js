@@ -1,11 +1,17 @@
 import React from "react";
 
-function Task() {
+function Task({text, category, handleRemove, tasks, setTasks}) {
+
+  function handleRemove(itemToBeRemoved) {
+    const newTasks = tasks.filter((task) => task.text !== itemToBeRemoved)
+    setTasks(newTasks)
+  }
+
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+      <div className="label">{category}</div>
+      <div className="text">{text}</div>
+      <button className="delete" onClick={() => handleRemove(text)}>X</button>
     </div>
   );
 }
